@@ -1,6 +1,6 @@
 # LOG TO CSV
 
-from . import sensor
+import sensor
 
 
 def log():
