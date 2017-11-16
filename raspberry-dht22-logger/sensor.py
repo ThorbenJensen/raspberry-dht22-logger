@@ -1,22 +1,21 @@
-#!/usr/bin/python
 # READ FROM SENSOR
 
 import sys
 import Adafruit_DHT
 
-sensor_args = {'22': Adafruit_DHT.DHT22}
 
-if len(sys.argv) == 3 and sys.argv[1] in sensor_args:
-    sensor = sensor_args[sys.argv[1]]
-    pin = sys.argv[2]
-else:
-    print('usage: sudo ./sensor.py 22 GPIOpin#')
-    sys.exit(1)
+def read_sensor(sensor=22, pin=4):
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    return humidity, temperature
 
-humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
-if humidity is not None and temperature is not None:
-    print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
-else:
-    print('Failed to get reading. Try again!')
-    sys.exit(1)
+if __name__ == "__main__":
+    """Read humidity and temperature from sensor, print results."""
+    humidity, temperature = read_sensor()
+
+    if humidity is not None and temperature is not None:
+        print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature,
+                                                          humidity))
+    else:
+        print('Failed to get reading. Try again!')
+        sys.exit(1)
