@@ -3,17 +3,14 @@
 import sensor
 
 
-def log():
+def log(file_path='../log/log.csv', verbose=True):
     humidity, temperature = sensor.read_sensor()
-
-    if humidity is not None and temperature is not None:
+    if verbose:
         print('{0:0.1f},{1:0.1f}'.format(temperature, humidity))
-    else:
-        print('Failed to get reading. Try again!')
-        print('Humidity: ' + str(humidity))
-        print('Temperature: ' + str(temperature))
+    # write to file
+    with open(file_path, 'a') as myfile:
+        myfile.write(str(humidity) + ',' + str(temperature))
 
 
 if __name__ == "__main__":
-    for i in range(10):
-        log()
+    log('../log/log.csv', True)
