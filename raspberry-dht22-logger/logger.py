@@ -13,7 +13,7 @@ def log(file_path='../log/log.csv', verbose=True):
         print('{0:0.1f},{1:0.1f}'.format(temperature, humidity))
     # write to file
     with open(file_path, 'a') as myfile:
-        myfile.write(timestamp
+        myfile.write(str(timestamp)
                      + ','
                      + str(humidity)
                      + ','
