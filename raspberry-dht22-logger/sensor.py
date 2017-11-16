@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # READ FROM SENSOR
 
 import sys
@@ -9,7 +10,7 @@ if len(sys.argv) == 3 and sys.argv[1] in sensor_args:
     sensor = sensor_args[sys.argv[1]]
     pin = sys.argv[2]
 else:
-    print('usage: sudo ./Adafruit_DHT.py 22 GPIOpin#')
+    print('usage: sudo ./sensor.py 22 GPIOpin#')
     sys.exit(1)
 
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
