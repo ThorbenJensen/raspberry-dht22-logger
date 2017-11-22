@@ -2,9 +2,9 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from meteocalc import Temp, dew_point
 
 df = pd.read_csv("log/log.csv")
+df = df.set_index('time')
 
 # calculate dew point
 df['dew_point_temperature'] = df.temperature - ((100 - df.humidity)/5.)
@@ -16,8 +16,9 @@ else:
     print("Good! Temperature was never below dew point.")
 
 fig = plt.figure()
-ax = df.plot(y=['humidity', 'temperature', 'dew_point_temperature'], rot=45)
-ax = ax.set_xticklabels(df.time, rotation=45)
+df.plot(y=['humidity', 'temperature', 'dew_point_temperature'],
+        rot=45)
+# ax = ax.set_xticklabels(df.time, rotation=45)
 plt.tight_layout()
 plt.savefig('reports/timeseries.pdf')
 
