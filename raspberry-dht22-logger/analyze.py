@@ -17,9 +17,17 @@ else:
 
 fig = plt.figure()
 df.plot(y=['humidity', 'temperature', 'dew_point_temperature'],
-        rot=45)
+        rot=45,
+        grid = True,
+        yticks = range(0, 81, 10),
+        fontsize = 8)
+plt.legend(loc = 'upper left',
+           fontsize = 8)
 # ax = ax.set_xticklabels(df.time, rotation=45)
 plt.tight_layout()
 plt.savefig('reports/timeseries.pdf')
+
+
+
 
 print('Report was written to \'reports/timeseries.pdf\'.')
