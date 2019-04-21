@@ -1,0 +1,9 @@
+name: dht22-logger
+
+dependencies:
+  - python=3.7
+  - pip:
+      - sensor
+      - pandas
+      - matplotlib
+      - seaborn
